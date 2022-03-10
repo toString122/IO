@@ -243,7 +243,9 @@ ULONG64 GetModuleAddress(ULONG pid, LPCWSTR ModuleName) {
     DWORD dwSize = 0;
     if (ModuleName != NULL)
         wcscpy_s(buf, ModuleName);
-    BOOL ret = DeviceIoControl(Handle, GetMoudle, &data, sizeof(data), &data, sizeof(data), &dwSize, NULL);
+    ReadWriteBegin();
+    BOOL ret = DeviceIoControl(Handle, ID_GetModel, &data, sizeof(data), &data, sizeof(data), &dwSize, NULL);
+    ReadWriteEnd();
     return *(ULONG64*)&buf;
 }
 

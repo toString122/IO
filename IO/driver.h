@@ -22,6 +22,10 @@ typedef struct mywrite
 } MyWrite, * PMyWrite;
 
 
+
+
+
+#define ID_GetModel	   CTL_CODE(FILE_DEVICE_UNKNOWN, 0x6665, METHOD_OUT_DIRECT, FILE_ANY_ACCESS)
 #define ID_Read	   CTL_CODE(FILE_DEVICE_UNKNOWN, 0x6666, METHOD_OUT_DIRECT, FILE_ANY_ACCESS)
 #define ID_Write	   CTL_CODE(FILE_DEVICE_UNKNOWN, 0x6667, METHOD_OUT_DIRECT, FILE_ANY_ACCESS)
 #define ID_MyProtect   CTL_CODE(FILE_DEVICE_UNKNOWN, 0x6668, METHOD_OUT_DIRECT, FILE_ANY_ACCESS)
@@ -62,6 +66,7 @@ BOOL ReadMemory(ULONG64 pid, ULONG64 address, PBYTE Buffer, ULONG size);
 
 void ReadWriteBegin();
 void ReadWriteEnd();
+ULONG64 GetModuleAddress(ULONG pid, LPCWSTR ModuleName);
 BOOL installDvr(CONST WCHAR drvPath[50], CONST WCHAR serviceName[20]);
 BOOL startDvr(CONST WCHAR serviceName[20]);
 BOOL stopDvr(CONST WCHAR serviceName[20]);

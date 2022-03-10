@@ -13,16 +13,21 @@ int main()
         cout << "启动成功." << endl;
     }
     //读整数型内存
-   
-    ULONG Read_Int = ReadInt(3968, 4880096L);
+    ULONG pid = 8232;
+
+    ULONG Read_Int = ReadInt(pid, 4880096L);
    
     printf("读整数型内存:%u\n", Read_Int);
 
-    WriteInt(3968, 4880096L,10);
+    WriteInt(pid, 4880096L,10);
 
-    ULONG Read_Int1 = ReadInt(3968, 4880096L);
+    ULONG Read_Int1 = ReadInt(pid, 4880096L);
 
     printf("读整数型内存:%u\n", Read_Int1);
+
+
+    ULONG64 Address = GetModuleAddress(pid, L"123.exe");
+    printf("123.exe模块地址:%llX\n", Address);
 
     if (stopDvr(L"LYSM_service") == TRUE) {
         cout << "停止成功" << endl;
