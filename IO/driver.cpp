@@ -240,7 +240,7 @@ ULONG64 GetModuleAddress(ULONG pid, LPCWSTR ModuleName) {
     WCHAR buf[MAX_PATH] = { 0 };
     data.pid = pid;
     data.buf = (ULONG64)buf;
-    data.Size = 7;
+    //data.Size = 7;
     DWORD dwSize = 0;
     if (ModuleName != NULL)
         wcscpy_s(buf, ModuleName);
@@ -248,6 +248,16 @@ ULONG64 GetModuleAddress(ULONG pid, LPCWSTR ModuleName) {
     BOOL ret = DeviceIoControl(Handle, ID_GetModel, &data, sizeof(data), &data, sizeof(data), &dwSize, NULL);
     ReadWriteEnd();
     return *(ULONG64*)&buf;
+}
+
+BOOL ProtectProcess(ULONG pid) {
+    TongL_PROCESS data = { 0 };
+    data.pid = pid;
+    DWORD dwSize = 0;
+    ReadWriteBegin();
+    BOOL ret = DeviceIoControl(Handle, ID_MyProtect, &data, sizeof(data), &data, sizeof(data), &dwSize, NULL);
+    ReadWriteEnd();
+    return ret;
 }
 
 
@@ -298,6 +308,8 @@ const char* ReadText(ULONG pid, ULONG64 address, ULONG size) {
     p[size] = 0;
     return p;
 }
+
+
 
 BOOL WriteByte(ULONG pid, ULONG64 address, BYTE Buffer)
 {

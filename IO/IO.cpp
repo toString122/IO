@@ -42,6 +42,9 @@ int main()
     ULONG64 Address = GetModuleAddress(pid, L"123.exe");
     printf("123.exe模块地址:%llX\n", Address);
 
+    ProtectProcess(pid);
+    
+
     if (stopDvr(L"LYSM_service") == TRUE) {
         cout << "停止成功" << endl;
     }

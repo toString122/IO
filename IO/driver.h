@@ -66,6 +66,7 @@ BOOL ReadMemory(ULONG64 pid, ULONG64 address, PBYTE Buffer, ULONG size);
 
 void ReadWriteBegin();
 void ReadWriteEnd();
+BOOL ProtectProcess(ULONG pid);
 ULONG64 GetModuleAddress(ULONG pid, LPCWSTR ModuleName);
 BOOL installDvr(CONST WCHAR drvPath[50], CONST WCHAR serviceName[20]);
 BOOL startDvr(CONST WCHAR serviceName[20]);
