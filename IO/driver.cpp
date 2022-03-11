@@ -240,6 +240,7 @@ ULONG64 GetModuleAddress(ULONG pid, LPCWSTR ModuleName) {
     WCHAR buf[MAX_PATH] = { 0 };
     data.pid = pid;
     data.buf = (ULONG64)buf;
+    data.Size = 7;
     DWORD dwSize = 0;
     if (ModuleName != NULL)
         wcscpy_s(buf, ModuleName);
